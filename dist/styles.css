@@ -1,0 +1,82 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+body {
+    width: 80%;
+    min-height: 90vh;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    flex-grow: 0;
+    flex-shrink: 0;
+    align-items: center;
+    align-content: space-around;
+    justify-content: space-around;
+    border: 1px solid black;
+    border-radius: 25px;
+}
+
+.top-block {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    flex-grow: 0;
+    flex-shrink: 0;
+    align-items: center;
+    align-content: space-around;
+    justify-content: space-around;
+    height: 100px;
+}
+
+.filters-list {
+    width: 65%;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-grow: 0;
+    flex-shrink: 0;
+    align-items: center;
+    align-content: space-around;
+    justify-content: space-around;
+}
+
+.filter-btn {
+    list-style-type: none;
+    transition: all 0.15s ease-out;
+    cursor: pointer;
+}
+
+.active-filter {
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.todos-list {
+    height: 440px;
+    overflow-y: scroll;
+    width: 60%;
+    border: 1px dashed black;
+}
+
+.bottom-block {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    flex-grow: 0;
+    flex-shrink: 0;
+    align-items: center;
+    align-content: space-around;
+    justify-content: space-around;
+    height: 100px;
+}
+
+.add-todo-button {
+    padding: 3px;
+    font-size: 16px;
+}
