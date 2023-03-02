@@ -3,8 +3,8 @@ import _sinon from 'sinon';
 import test from 'tape';
 
 // actions
-import { todosAddTodoAction } from '../../actions/todos-add-todo/todos-add-todo.action.js';
-import { todosToggleCompleteAction } from '../../actions/todos-toggle-complete/todos-toggle-complete.action.js';
+import { todosAddTodoAction } from '../../actions/todos-add-todo-action/todos-add-todo.action.js';
+import { todosToggleCompleteAction } from '../../actions/todos-toggle-complete-action/todos-toggle-complete.action.js';
 
 // reducer
 import { initial_state, todosReducer } from './todos.reducer.js';

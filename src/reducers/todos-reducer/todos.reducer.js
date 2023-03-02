@@ -1,6 +1,6 @@
 // actions names
-import TODOS_ADD_TODO from '../../actions/todos-add-todo/todos-add-todo.action.js';
-import TODOS_TOGGLE_COMPLETE from '../../actions/todos-toggle-complete/todos-toggle-complete.action.js';
+import TODOS_ADD_TODO from '../../actions/todos-add-todo-action/todos-add-todo.action.js';
+import TODOS_TOGGLE_COMPLETE from '../../actions/todos-toggle-complete-action/todos-toggle-complete.action.js';
 
 const REDUCER_NAME = 'TODOS_REDUCER';
 const INITIAL_STATE = {
