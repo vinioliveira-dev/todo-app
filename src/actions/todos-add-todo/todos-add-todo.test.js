@@ -3,10 +3,10 @@ import _sinon from 'sinon';
 import test from 'tape';
 
 // action
-import TODOS_ADD_TODO, { addTodoAction } from './todos-add-todo.action.js';
+import TODOS_ADD_TODO, { todosAddTodoAction } from './todos-add-todo.action.js';
 
 // TESTS
-const TEST_NAME = 'addTodoActionModule';
+const TEST_NAME = 'todosAddTodoActionModule';
 
 test(TEST_NAME, (t) => {
 
@@ -17,9 +17,9 @@ test(TEST_NAME, (t) => {
         t.end();
     });
 
-    t.test(`${TEST_NAME}: the action creator 'addTodoAction': `, (t) => {
+    t.test(`${TEST_NAME}: the action creator 'todosAddTodoAction': `, (t) => {
         
-        const actual = addTodoAction('build TODOS_ADD_TODO action');
+        const actual = todosAddTodoAction('build TODOS_ADD_TODO action');
         const expected = {
             type: TODOS_ADD_TODO,
             payload: {
@@ -28,14 +28,14 @@ test(TEST_NAME, (t) => {
             }
         };
 
-        t.equal(typeof addTodoAction, 'function', 'should be a function.');
+        t.equal(typeof todosAddTodoAction, 'function', 'should be a function.');
         t.deepEqual(actual, expected, 'should return the expected action object.')
         t.end();
     });
 
     t.test(`${TEST_NAME}: when no 'content' value is passed, the action:`, (t) => {
         
-        const actual = addTodoAction();
+        const actual = todosAddTodoAction();
         const expected = {
             type: TODOS_ADD_TODO,
             payload: {

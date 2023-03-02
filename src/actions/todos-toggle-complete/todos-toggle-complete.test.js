@@ -3,10 +3,10 @@ import _sinon from 'sinon';
 import test from 'tape';
 
 // action
-import TODOS_TOGGLE_COMPLETE, { toggleTodoAction } from './todos-toggle-complete.action.js';
+import TODOS_TOGGLE_COMPLETE, { todosToggleCompleteAction } from './todos-toggle-complete.action.js';
 
 // TESTS
-const TEST_NAME = 'toggleTodoActionModule';
+const TEST_NAME = 'todosToggleCompleteActionModule';
 
 test(TEST_NAME, (t) => {
 
@@ -17,9 +17,9 @@ test(TEST_NAME, (t) => {
         t.end();
     });
 
-    t.test(`${TEST_NAME}: the action creator 'toggleTodoAction': `, (t) => {
+    t.test(`${TEST_NAME}: the action creator 'todosToggleCompleteAction': `, (t) => {
         
-        const actual = toggleTodoAction(1);
+        const actual = todosToggleCompleteAction(1);
         const expected = {
             type: TODOS_TOGGLE_COMPLETE,
             payload: {
@@ -29,14 +29,14 @@ test(TEST_NAME, (t) => {
 
         console.log(actual);
 
-        t.equal(typeof toggleTodoAction, 'function', 'should be a function.');
+        t.equal(typeof todosToggleCompleteAction, 'function', 'should be a function.');
         t.deepEqual(actual, expected, 'should return the expected action object.')
         t.end();
     });
 
     t.test(`${TEST_NAME}: when no 'id' value is passed, the action:`, (t) => {
         
-        const actual = toggleTodoAction();
+        const actual = todosToggleCompleteAction();
         const expected = {
             type: TODOS_TOGGLE_COMPLETE,
             payload: {

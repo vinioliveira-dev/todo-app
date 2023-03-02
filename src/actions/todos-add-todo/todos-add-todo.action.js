@@ -2,7 +2,7 @@ const ACTION_NAME = `TODOS_ADD_TODO`;
 
 let next_id = 0;
 
-function addTodoAction (todo_content = '') {
+function todosAddTodoAction (todo_content = '') {
     return {
         type: ACTION_NAME,
         payload: {
@@ -13,6 +13,6 @@ function addTodoAction (todo_content = '') {
 }
 
 export {
-    addTodoAction,
+    todosAddTodoAction,
     ACTION_NAME as default
 }
