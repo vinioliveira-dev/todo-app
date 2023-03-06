@@ -1,20 +1,19 @@
 import FILTERS_SET_FILTER from '../../actions/filters-set-filter/filters-set-filter.action.js';
-import { initial_state } from '../todos-reducer/todos.reducer.js';
 
 const REDUCER_NAME = `FILTERS_REDUCER`;
-const INITIAL_STATE = { active_filter: "all" };
+const INITIAL_STATE = { filter: "all" };
 
 const AVAILABLE_FILTERS = {
-    ALL: "all",
-    COMPLETED: "completed",
-    INCOMPLETE: "incomplete"
+    all: "all",
+    completed: "completed",
+    incomplete: "incomplete"
 };
 
-function filtersReducer(state = initial_state, action = {}) {
+function filtersReducer(state = INITIAL_STATE, action = {}) {
     switch (action.type) {
         case FILTERS_SET_FILTER: {
             return AVAILABLE_FILTERS.hasOwnProperty(action.payload.filter) ? 
-            action.payload.filter : 
+            { filter: action.payload.filter } : 
             state;
         }
 

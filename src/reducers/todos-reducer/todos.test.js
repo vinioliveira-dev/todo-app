@@ -94,7 +94,7 @@ test(TEST_NAME, (t) => {
         const actual = todosReducer(state, todosToggleCompleteAction(314));
         const expected = state;
 
-        t.deepEqual(actual, expected, 'should return the previous state');
+        t.equal(actual, expected, 'should return the previous state object');
         t.end();
     });
 

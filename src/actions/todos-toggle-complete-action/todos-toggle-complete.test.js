@@ -27,8 +27,6 @@ test(TEST_NAME, (t) => {
             }
         };
 
-        console.log(actual);
-
         t.equal(typeof todosToggleCompleteAction, 'function', 'should be a function.');
         t.deepEqual(actual, expected, 'should return the expected action object.')
         t.end();
