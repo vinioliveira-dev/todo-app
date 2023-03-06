@@ -8,5 +8,9 @@
 </head>
 <body>
     <script src="./store.js"></script>
+    <script>
+        const _store = todo_store.create();
+        const store = {...todo_store, _store};
+    </script>
 </body>
 </html>

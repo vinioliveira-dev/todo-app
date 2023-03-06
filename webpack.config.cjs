@@ -5,7 +5,6 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'store.js',
-        library: 'store',
-        libraryTarget: 'var'
+        library: 'todo_store'
     }
 };
