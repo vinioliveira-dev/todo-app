@@ -18,7 +18,10 @@ function create() {
         [FILTERS_REDUCER]:  filtersReducer
     });
 
-    const store = createStore(reducers);
+    const store = createStore(
+        reducers,
+        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    );
     const plugReaction = reactions_enhancer.plugReaction(store);
     plugReaction(reactions);
 
