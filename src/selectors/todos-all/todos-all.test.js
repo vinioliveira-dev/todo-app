@@ -27,17 +27,7 @@ test(TEST_NAME, (t) => {
     });
 
     t.test(`${TEST_NAME}: if no state object is passed, the selector`, (t) => {
-        const state = {
-            TODOS_REDUCER: {
-                last_id: 0,
-                todos: {}
-            },
-            FILTERS_REDUCER: {
-                filter: 'all'
-            }
-        };
-
-        t.deepEqual(todosAllSelector(), undefined, 'should return undefined');
+        t.equal(todosAllSelector(), undefined, 'should return undefined');
         t.end();
     });
 });
