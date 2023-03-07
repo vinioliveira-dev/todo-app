@@ -1,24 +1,20 @@
 // action listened to
-import TODOS_TOGGLE_COMPLETE from '../../actions/todos-toggle-complete-action/todos-toggle-complete.action.js';
+import TODOS_COMPLETED_TOGGLE from '../../actions/todos-completed-toggle/todos-completed-toggle.action.js';
 
 // action used as reaction
-import { todosDeleteTodoAction } from '../../actions/todos-delete-todo/todos-delete-todo.action.js';
+import { todosDeleteAction } from '../../actions/todos-delete/todos-delete.action.js';
 
 const todosDeleteCompletedReaction = (action_s, store) => {
     if (!store) {
         throw new Error('ERROR - NO STORE');
     }
 
-    const toggle_complete_action_s = action_s.filter(action => action.type === TODOS_TOGGLE_COMPLETE);
+    const toggle_action_s = action_s.filter(({ type }) => type === TODOS_COMPLETED_TOGGLE);
 
-    const reaction_s = toggle_complete_action_s
-        .map((action) => {
-            const { id } = action.payload;
-            return [ todosDeleteTodoAction(id) ];
-        }).flatten();
+    const reaction_s = toggle_action_s
+        .map(action => todosDeleteAction(action.payload));
 
-
-return reaction_s;
+    return reaction_s;
 };
 
 export {
