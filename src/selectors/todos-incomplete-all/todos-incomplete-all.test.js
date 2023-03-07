@@ -54,6 +54,39 @@ test(TEST_NAME, (t) => {
         t.end();
     });
 
+    t.test(`${TEST_NAME}: if all "todos" have 'completed: true', the selector`, (t) => {
+        const state = {
+            TODOS_REDUCER: {
+                todos: {
+                    1: {
+                        content: 'string1',
+                        completed: true
+                    },
+
+                    2: {
+                        content: 'string2',
+                        completed: true
+                    },
+
+                    3: {
+                        content: 'string3',
+                        completed: true
+                    },
+
+                    4: {
+                        content: 'string4',
+                        completed: true
+                    }
+                }
+            }
+        };
+
+        const expected = 'all to-dos were done';
+
+        t.deepEqual(todosIncompleteAllSelector(state), expected, 'should return the expected value');
+        t.end();
+    });
+
     t.test(`${TEST_NAME}: if no state object is passed, the selector`, (t) => {
         t.equal(todosIncompleteAllSelector(), undefined, 'should return undefined');
         t.end();
