@@ -3,7 +3,7 @@ import { createStore, combineReducers } from 'redux';
 import { combineReactions, createReactionEnhancer } from '../libs/redux-s/redux-s.js';
 
 // reaction
-import { todosDeleteCompletedReaction } from './reactions/todos-delete-completed-reaction/todos-delete-completed.reaction.js';
+import { todosDeleteCompletedReaction } from './reactions/todos-delete-completed/todos-delete-completed.reaction.js';
 
 // reducers
 import TODOS_REDUCER, { todosReducer } from './reducers/todos/todos.reducer.js';
