@@ -1,10 +1,10 @@
 const path = require('path');
 
 module.exports = {
-    entry: './src/store.js',
+    entry: './src/todo-store-index.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'store.js',
+        filename: 'todo-store.js',
         library: 'todo_store'
     }
 };

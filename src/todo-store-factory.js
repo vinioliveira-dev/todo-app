@@ -3,14 +3,14 @@ import { createStore, combineReducers } from 'redux';
 import { combineReactions, createReactionEnhancer } from '../libs/redux-s/redux-s.js';
 
 // reaction
-import { todosAddNewTodoNotificationReaction } from './reactions/todos-add-new-todo-notification-reaction/todos-add-new-todo-notification.reaction.js';
+import { todosDeleteCompletedReaction } from './reactions/todos-delete-completed-reaction/todos-delete-completed.reaction.js';
 
 // reducers
 import TODOS_REDUCER, { todosReducer } from './reducers/todos-reducer/todos.reducer.js';
 import FILTERS_REDUCER, { filtersReducer } from './reducers/filters-reducer/filters.reducer.js';
 
 function create() {
-    const reactions = combineReactions(todosAddNewTodoNotificationReaction);
+    const reactions = combineReactions(todosDeleteCompletedReaction);
     const reactions_enhancer = createReactionEnhancer();
 
     const reducers = combineReducers({
