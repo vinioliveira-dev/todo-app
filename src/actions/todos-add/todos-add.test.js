@@ -3,41 +3,41 @@ import _sinon from 'sinon';
 import test from 'tape';
 
 // action
-import TODOS_ADD_TODO, { todosAddTodoAction } from './todos-add-todo.action.js';
+import TODOS_ADD, { todosAddAction } from './todos-add-todo.action.js';
 
 // TESTS
-const TEST_NAME = 'todosAddTodoActionModule';
+const TEST_NAME = 'todosAddActionModule';
 
 test(TEST_NAME, (t) => {
 
     t.test(`${TEST_NAME}: the default value of this module: `, (t) => {
-        const actual = TODOS_ADD_TODO;
+        const actual = TODOS_ADD;
         t.equal(typeof actual, 'string', 'should be a string');
         t.notEqual(actual, '', 'should not be empty');
         t.end();
     });
 
-    t.test(`${TEST_NAME}: the action creator 'todosAddTodoAction': `, (t) => {
+    t.test(`${TEST_NAME}: the action creator 'todosAddAction': `, (t) => {
         
-        const actual = todosAddTodoAction('build TODOS_ADD_TODO action');
+        const actual = todosAddAction('build TODOS_ADD action');
         const expected = {
-            type: TODOS_ADD_TODO,
+            type: TODOS_ADD,
             payload: {
                 id: 1,
-                content: 'build TODOS_ADD_TODO action'
+                content: 'build TODOS_ADD action'
             }
         };
 
-        t.equal(typeof todosAddTodoAction, 'function', 'should be a function.');
+        t.equal(typeof todosAddAction, 'function', 'should be a function.');
         t.deepEqual(actual, expected, 'should return the expected action object.')
         t.end();
     });
 
     t.test(`${TEST_NAME}: when no 'content' value is passed, the action:`, (t) => {
         
-        const actual = todosAddTodoAction();
+        const actual = todosAddAction();
         const expected = {
-            type: TODOS_ADD_TODO,
+            type: TODOS_ADD,
             payload: {
                 id: 2,
                 content: ''

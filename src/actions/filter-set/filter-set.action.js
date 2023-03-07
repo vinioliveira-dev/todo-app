@@ -1,6 +1,6 @@
-const ACTION_NAME = `FILTERS_SET_FILTER`;
+const ACTION_NAME = `FILTER_SET`;
 
-function filtersSetFilterAction (filter) {
+function filterSetAction (filter) {
     return {
         type: ACTION_NAME,
         payload: { filter }
@@ -8,6 +8,6 @@ function filtersSetFilterAction (filter) {
 };
 
 export {
-    filtersSetFilterAction,
+    filterSetAction,
     ACTION_NAME as default
 };
