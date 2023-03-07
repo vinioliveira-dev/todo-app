@@ -1,13 +1,13 @@
 import _sinon from 'sinon';
 import test from 'tape';
 
-import { todosAllTodosSelector } from './todos-all-todos.selector.js';
+import { todosAllSelector } from './todos-all.selector.js';
 
-const TEST_NAME = `todosAllTodosSelectorModule`;
+const TEST_NAME = `todosAllSelectorModule`;
 
 test(TEST_NAME, (t) => {
     t.test(`${TEST_NAME}: `, (t) => {
-        t.equal(typeof todosAllTodosSelector, 'function', 'the selector should be a function');
+        t.equal(typeof todosAllSelector, 'function', 'the selector should be a function');
         t.end();
     });
 
@@ -22,7 +22,7 @@ test(TEST_NAME, (t) => {
             }
         };
 
-        t.deepEqual(todosAllTodosSelector(state), state.TODOS_REDUCER.todos, 'should return the correct slice of the state');
+        t.deepEqual(todosAllSelector(state), state.TODOS_REDUCER.todos, 'should return the correct slice of the state');
         t.end();
     });
 
@@ -37,7 +37,7 @@ test(TEST_NAME, (t) => {
             }
         };
 
-        t.deepEqual(todosAllTodosSelector(), undefined, 'should return undefined');
+        t.deepEqual(todosAllSelector(), undefined, 'should return undefined');
         t.end();
     });
 });
