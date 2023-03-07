@@ -1,7 +1,7 @@
 // actions names
-import TODOS_ADD_TODO from '../../actions/todos-add-todo-action/todos-add-todo.action.js';
-import TODOS_DELETE_TODO from '../../actions/todos-delete-todo/todos-delete-todo.action.js';
-import TODOS_TOGGLE_COMPLETE from '../../actions/todos-toggle-complete-action/todos-toggle-complete.action.js';
+import TODOS_ADD from '../../actions/todos-add/todos-add.action.js';
+import TODOS_DELETE from '../../actions/todos-delete/todos-delete.action.js';
+import TODOS_COMPLETED_TOGGLE from '../../actions/todos-completed-toggle/todos-completed-toggle.action.js';
 
 const REDUCER_NAME = 'TODOS_REDUCER';
 const INITIAL_STATE = {
@@ -11,7 +11,7 @@ const INITIAL_STATE = {
 
 function todosReducer(state = INITIAL_STATE, action = {}) {
     switch(action.type) {
-        case TODOS_ADD_TODO: {
+        case TODOS_ADD: {
             const { content } = action.payload;
             const id = state.last_id + 1;
             return {
@@ -27,7 +27,7 @@ function todosReducer(state = INITIAL_STATE, action = {}) {
             };
         }
 
-        case TODOS_DELETE_TODO: {
+        case TODOS_DELETE: {
             const id = action.payload;
 
             if (state.todos.hasOwnProperty(`${id}`)) {
@@ -43,7 +43,7 @@ function todosReducer(state = INITIAL_STATE, action = {}) {
             return state;
         }
 
-        case TODOS_TOGGLE_COMPLETE: {
+        case TODOS_COMPLETED_TOGGLE: {
             const { id } = action.payload;
             return (state.todos.hasOwnProperty(`${id}`)) ? {
                 ...state,

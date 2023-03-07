@@ -3,8 +3,8 @@ import _sinon from 'sinon';
 import test from 'tape';
 
 // actions
-import { todosAddTodoAction } from '../../actions/todos-add-todo-action/todos-add-todo.action.js';
-import { todosToggleCompleteAction } from '../../actions/todos-toggle-complete-action/todos-toggle-complete.action.js';
+import { todosAddAction } from '../../actions/todos-add-todo-action/todos-add-todo.action.js';
+import { todosCompletedToggleAction } from '../../actions/todos-toggle-complete-action/todos-toggle-complete.action.js';
 
 // reducer
 import { initial_state, todosReducer } from './todos.reducer.js';
@@ -19,9 +19,9 @@ test(TEST_NAME, (t) => {
         t.end();
     });
 
-    // TODOS_ADD_TODO /////////////////
+    // TODOS_ADD /////////////////
     t.test(`${TEST_NAME}: for the action of adding a new todo, the reducer`, (t) => {        
-        const actual = todosReducer(initial_state, todosAddTodoAction('build the TODOS_REDUCER'));
+        const actual = todosReducer(initial_state, todosAddAction('build the TODOS_REDUCER'));
         const expected = {
             all_ids: [1],
             by_ids: {
@@ -37,7 +37,7 @@ test(TEST_NAME, (t) => {
     });
 
     t.test(`${TEST_NAME}: for the action of adding a new todo, if the action was called with no arguments`, (t) => {
-        const actual = todosReducer(initial_state, todosAddTodoAction());
+        const actual = todosReducer(initial_state, todosAddAction());
         const expected = {
             all_ids: [2],
             by_ids: {
@@ -53,8 +53,8 @@ test(TEST_NAME, (t) => {
         t.end();
     });
 
-    // TODOS_TOGGLE_COMPLETE /////////////////
-    t.test(`${TEST_NAME}: for the action 'todosToggleCompleteAction', the reducer`, (t) => {
+    // TODOS_COMPLETED_TOGGLE /////////////////
+    t.test(`${TEST_NAME}: for the action 'todosCompletedToggleAction', the reducer`, (t) => {
         const state = {
             all_ids: [1],
             by_ids: {
@@ -65,7 +65,7 @@ test(TEST_NAME, (t) => {
             }
         };
 
-        const actual = todosReducer(state, todosToggleCompleteAction(1));
+        const actual = todosReducer(state, todosCompletedToggleAction(1));
         const expected = {
             all_ids: [1],
             by_ids: {
@@ -80,7 +80,7 @@ test(TEST_NAME, (t) => {
         t.end();
     });
 
-    t.test(`${TEST_NAME}: for the action 'todosToggleCompleteAction', if an invalid/non-existent id is passed, the reducer`, (t) => {
+    t.test(`${TEST_NAME}: for the action 'todosCompletedToggleAction', if an invalid/non-existent id is passed, the reducer`, (t) => {
         const state = {
             all_ids: [1],
             by_ids: {
@@ -91,7 +91,7 @@ test(TEST_NAME, (t) => {
             }
         };
 
-        const actual = todosReducer(state, todosToggleCompleteAction(314));
+        const actual = todosReducer(state, todosCompletedToggleAction(314));
         const expected = state;
 
         t.equal(actual, expected, 'should return the previous state object');
