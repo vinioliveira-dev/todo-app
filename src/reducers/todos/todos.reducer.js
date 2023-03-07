@@ -44,7 +44,7 @@ function todosReducer(state = INITIAL_STATE, action = {}) {
         }
 
         case TODOS_COMPLETED_TOGGLE: {
-            const { id } = action.payload;
+            const id = action.payload;
             return (state.todos.hasOwnProperty(`${id}`)) ? {
                 ...state,
                 todos: {
