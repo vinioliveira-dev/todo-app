@@ -6,8 +6,8 @@ import { combineReactions, createReactionEnhancer } from '../libs/redux-s/redux-
 import { todosDeleteCompletedReaction } from './reactions/todos-delete-completed-reaction/todos-delete-completed.reaction.js';
 
 // reducers
-import TODOS_REDUCER, { todosReducer } from './reducers/todos-reducer/todos.reducer.js';
-import FILTERS_REDUCER, { filtersReducer } from './reducers/filters-reducer/filters.reducer.js';
+import TODOS_REDUCER, { todosReducer } from './reducers/todos/todos.reducer.js';
+import FILTERS_REDUCER, { filtersReducer } from './reducers/filters/filters.reducer.js';
 
 function create() {
     const reactions = combineReactions(todosDeleteCompletedReaction);
