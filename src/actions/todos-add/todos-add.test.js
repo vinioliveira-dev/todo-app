@@ -3,7 +3,7 @@ import _sinon from 'sinon';
 import test from 'tape';
 
 // action
-import TODOS_ADD, { todosAddAction } from './todos-add-todo.action.js';
+import TODOS_ADD, { todosAddAction } from './todos-add.action.js';
 
 // TESTS
 const TEST_NAME = 'todosAddActionModule';
@@ -22,10 +22,7 @@ test(TEST_NAME, (t) => {
         const actual = todosAddAction('build TODOS_ADD action');
         const expected = {
             type: TODOS_ADD,
-            payload: {
-                id: 1,
-                content: 'build TODOS_ADD action'
-            }
+            payload: { content: 'build TODOS_ADD action' }
         };
 
         t.equal(typeof todosAddAction, 'function', 'should be a function.');
@@ -38,10 +35,7 @@ test(TEST_NAME, (t) => {
         const actual = todosAddAction();
         const expected = {
             type: TODOS_ADD,
-            payload: {
-                id: 2,
-                content: ''
-            }
+            payload: { content: '' }
         }
 
         t.deepEqual(actual, expected, 'should return the expected action object.');

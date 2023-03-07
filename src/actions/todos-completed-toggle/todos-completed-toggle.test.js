@@ -22,9 +22,7 @@ test(TEST_NAME, (t) => {
         const actual = todosCompletedToggleAction(1);
         const expected = {
             type: TODOS_COMPLETED_TOGGLE,
-            payload: {
-                id: 1
-            }
+            payload: 1
         };
 
         t.equal(typeof todosCompletedToggleAction, 'function', 'should be a function.');
@@ -37,12 +35,8 @@ test(TEST_NAME, (t) => {
         const actual = todosCompletedToggleAction();
         const expected = {
             type: TODOS_COMPLETED_TOGGLE,
-            payload: {
-                id: undefined
-            }
+            payload: undefined
         };
-
-        console.log(actual);
 
         t.deepEqual(actual, expected, 'should return the expected action object.');
         t.end();
