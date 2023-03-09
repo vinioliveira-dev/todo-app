@@ -3,7 +3,7 @@ import TODOS_ADD from '../../actions/todos-add/todos-add.action.js';
 import TODOS_DELETE from '../../actions/todos-delete/todos-delete.action.js';
 import TODOS_COMPLETED_TOGGLE from '../../actions/todos-completed-toggle/todos-completed-toggle.action.js';
 
-const REDUCER_NAME = 'TODOS_REDUCER';
+const REDUCER_NAME = 'TODOS';
 const INITIAL_STATE = {
     last_id: 0,
     todos: {}
@@ -20,6 +20,7 @@ function todosReducer(state = INITIAL_STATE, action = {}) {
                 todos: {
                     ...state.todos,
                     [id]: {
+                        id,
                         content,
                         completed: false
                     }
@@ -30,13 +31,12 @@ function todosReducer(state = INITIAL_STATE, action = {}) {
         case TODOS_DELETE: {
             const id = action.payload;
 
-            if (state.todos.hasOwnProperty(`${id}`)) {
-                const { [id]: _removed, ...new_todos } = state.todos;
+            if (state.todos[id]) {
+                const { [id]: _removed, ...todos } = state.todos;
 
                 return {
                     ...state,
-                    all_ids: new_all_ids,
-                    todos: new_todos
+                    todos
                 }
             }
 
@@ -45,7 +45,7 @@ function todosReducer(state = INITIAL_STATE, action = {}) {
 
         case TODOS_COMPLETED_TOGGLE: {
             const id = action.payload;
-            return (state.todos.hasOwnProperty(`${id}`)) ? {
+            return (state.todos[id]) ? {
                 ...state,
                 todos: {
                     ...state.todos,

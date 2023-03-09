@@ -10,8 +10,8 @@ import { todosDeleteCompletedReaction } from './reactions/todos-delete-completed
 import { todosCompletedAllNotificationReaction } from './reactions/todos-completed-all-notification/todos-completed-all-notification.reaction.js';
 
 // reducers
-import TODOS_REDUCER, { todosReducer } from './reducers/todos/todos.reducer.js';
-import FILTERS_REDUCER, { filtersReducer } from './reducers/filters/filters.reducer.js';
+import TODOS, { todosReducer } from './reducers/todos/todos.reducer.js';
+import FILTERS, { filtersReducer } from './reducers/filters/filters.reducer.js';
 
 function create() {
     const reactions = combineReactions(
@@ -21,8 +21,8 @@ function create() {
     const reactions_enhancer = createReactionEnhancer();
 
     const reducers = combineReducers({
-        [TODOS_REDUCER]:    todosReducer,
-        [FILTERS_REDUCER]:  filtersReducer
+        [TODOS]:    todosReducer,
+        [FILTERS]:  filtersReducer
     });
 
     const store = createStore(
