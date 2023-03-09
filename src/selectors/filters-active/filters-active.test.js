@@ -22,12 +22,12 @@ test(TEST_NAME, (t) => {
             }
         };
 
-        t.deepEqual(filtersActiveSelector(state), state.FILTERS.filter, 'should return the correct slice of the state');
+        t.deepEqual(filtersActiveSelector(state), [state.FILTERS.filter], 'should return the correct slice of the state');
         t.end();
     });
 
     t.test(`${TEST_NAME}: if no state object is passed, the selector`, (t) => {
-        t.equal(filtersActiveSelector(), undefined, 'should return undefined');
+        t.deepEqual(filtersActiveSelector(), [], 'should return an empty array');
         t.end();
     });
 });

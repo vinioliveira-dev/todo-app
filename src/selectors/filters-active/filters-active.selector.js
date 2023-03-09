@@ -1,5 +1,5 @@
 function filtersActiveSelector(state = {}) {
-    return state.FILTERS && state.FILTERS.filter;
+    return (state.FILTERS && state.FILTERS.filter) ? [state.FILTERS.filter] : [];
 };
 
 export { filtersActiveSelector };
