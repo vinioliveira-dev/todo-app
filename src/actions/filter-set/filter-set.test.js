@@ -22,7 +22,7 @@ test(TEST_NAME, (t) => {
         const actual = filterSetAction('completed');
         const expected = {
             type: FILTER_SET,
-            payload: { filter: 'completed'}
+            payload: 'completed'
         };
 
         t.equal(typeof filterSetAction, 'function', 'should be a function.');
@@ -35,9 +35,7 @@ test(TEST_NAME, (t) => {
         const actual = filterSetAction();
         const expected = {
             type: FILTER_SET,
-            payload: {
-                filter: undefined
-            }
+            payload: undefined
         };
 
         t.deepEqual(actual, expected, 'should return the expected action object.');

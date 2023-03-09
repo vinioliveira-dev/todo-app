@@ -3,7 +3,7 @@ import _sinon from 'sinon';
 import test from 'tape';
 
 // action
-import { filterSetAction } from '../../actions/filters-set-filter/filters-set-filter.action.js';
+import { filterSetAction } from '../../actions/filter-set/filter-set.action.js';
 
 // reducer
 import { initial_state, filtersReducer } from './filters.reducer.js';
@@ -18,7 +18,7 @@ test(TEST_NAME, (t) => {
         t.end();
     });
 
-    t.test(`${TEST_NAME}: for the action of setting a new filter, the reducer`, (t) => {
+    t.test(`${TEST_NAME}: for the action 'filterSetAction', the reducer`, (t) => {
         const actual = filtersReducer(initial_state, filterSetAction('completed'));
         const expected = { filter: 'completed' };
 
@@ -26,7 +26,7 @@ test(TEST_NAME, (t) => {
         t.end();
     });
 
-    t.test(`${TEST_NAME}: for the action of setting a new filter with a not supported filter, the reducer`, (t) => {
+    t.test(`${TEST_NAME}: for the action 'filterSetAction' with a not supported filter, the reducer`, (t) => {
         const actual = filtersReducer(initial_state, filterSetAction('NOT SUPPORTED'));
         const expected = initial_state;
 
