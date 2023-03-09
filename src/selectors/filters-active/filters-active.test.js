@@ -13,16 +13,16 @@ test(TEST_NAME, (t) => {
 
     t.test(`${TEST_NAME}: the selector`, (t) => {
         const state = {
-            TODOS_REDUCER: {
+            TODOS: {
                 last_id: 0,
                 todos: {}
             },
-            FILTERS_REDUCER: {
+            FILTERS: {
                 filter: 'all'
             }
         };
 
-        t.deepEqual(filtersActiveSelector(state), state.FILTERS_REDUCER.filter, 'should return the correct slice of the state');
+        t.deepEqual(filtersActiveSelector(state), state.FILTERS.filter, 'should return the correct slice of the state');
         t.end();
     });
 
