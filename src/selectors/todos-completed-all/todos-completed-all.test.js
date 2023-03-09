@@ -16,21 +16,25 @@ test(TEST_NAME, (t) => {
             TODOS: {
                 todos: {
                     1: {
+                        id: 1,
                         content: 'string1',
                         completed: false
                     },
 
                     2: {
+                        id: 2,
                         content: 'string2',
                         completed: true
                     },
 
                     3: {
+                        id: 3,
                         content: 'string3',
                         completed: false
                     },
 
                     4: {
+                        id: 4,
                         content: 'string4',
                         completed: true
                     }
@@ -38,7 +42,7 @@ test(TEST_NAME, (t) => {
             }
         };
 
-        const expected = [{ content: 'string2', completed: true }, { content: 'string4', completed: true }];
+        const expected = [{ id: 2, content: 'string2', completed: true }, { id: 4, content: 'string4', completed: true }];
 
         console.log(todosCompletedAllSelector(state));
 
