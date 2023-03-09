@@ -41,4 +41,16 @@ test(TEST_NAME, (t) => {
         t.deepEqual(actual, expected, 'should return the expected action object.');
         t.end();
     });
+
+    t.test(`${TEST_NAME}: when 'content' value passed is not a string, the action:`, (t) => {
+        
+        const actual = todosAddAction(null);
+        const expected = {
+            type: TODOS_ADD,
+            payload: { content: 'null' }
+        }
+
+        t.deepEqual(actual, expected, 'should return the expected action object.');
+        t.end();
+    });
 })
