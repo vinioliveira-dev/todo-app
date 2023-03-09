@@ -13,7 +13,7 @@ test(TEST_NAME, (t) => {
 
     t.test(`${TEST_NAME}: the selector`, (t) => {
         const state = {
-            TODOS_REDUCER: {
+            TODOS: {
                 todos: {
                     1: {
                         content: 'string1',
@@ -38,24 +38,18 @@ test(TEST_NAME, (t) => {
             }
         };
 
-        const expected = {
-            2: {
-                content: 'string2',
-                completed: true
-            },
+        const expected = [{ content: 'string2', completed: true }, { content: 'string4', completed: true }];
 
-            4: {
-                content: 'string4',
-                completed: true
-            }
-        }
+        console.log(todosCompletedAllSelector(state));
 
-        t.deepEqual(todosCompletedAllSelector(state), expected, 'should return the correct values');
+        t.deepEqual(todosCompletedAllSelector(state), expected, 'should return the expected value');
         t.end();
     });
 
     t.test(`${TEST_NAME}: if no state object is passed, the selector`, (t) => {
-        t.equal(todosCompletedAllSelector(), undefined, 'should return undefined');
+        t.deepEqual(todosCompletedAllSelector(), [], 'should return an empty array');
         t.end();
     });
+    // in this last use case, instead of undefined, it should return an empty object, 
+    // or in the case of returning them in an array, then it should return an empty array
 });
