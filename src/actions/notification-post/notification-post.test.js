@@ -41,4 +41,16 @@ test(TEST_NAME, (t) => {
         t.deepEqual(actual, expected, 'should return the expected action object.');
         t.end();
     });
+
+    t.test(`${TEST_NAME}: when the value passed is not a string, the action:`, (t) => {
+        
+        const actual = notificationPostAction(false);
+        const expected = {
+            type: NOTIFICATION_POST,
+            payload: 'false'
+        };
+
+        t.deepEqual(actual, expected, 'should return the expected action object.');
+        t.end();
+    });
 })

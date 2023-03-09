@@ -3,7 +3,7 @@ const ACTION_NAME = `NOTIFICATION_POST`;
 function notificationPostAction (message = '') {
     return {
         type: ACTION_NAME,
-        payload: message
+        payload: (typeof message === 'string') ? message : `${message}`
     }
 }
 
