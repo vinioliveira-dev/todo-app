@@ -1,5 +1,5 @@
 function todosCompletedAllSelector(state = {}) {
-    return (state.TODOS.todos) ? Object.values(state.TODOS.todos).filter(todo => todo.completed) : [];
+    return (state.TODOS?.todos) ? Object.values(state.TODOS.todos).filter(todo => todo.completed) : [];
 };
 
 export { todosCompletedAllSelector };

@@ -44,8 +44,6 @@ test(TEST_NAME, (t) => {
 
         const expected = [{ id: 2, content: 'string2', completed: true }, { id: 4, content: 'string4', completed: true }];
 
-        console.log(todosCompletedAllSelector(state));
-
         t.deepEqual(todosCompletedAllSelector(state), expected, 'should return the expected value');
         t.end();
     });
