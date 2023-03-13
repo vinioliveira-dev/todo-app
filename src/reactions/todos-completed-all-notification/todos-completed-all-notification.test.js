@@ -20,212 +20,214 @@ test(TEST_NAME, (t) => {
 
     t.test(`${TEST_NAME}: when the state changes, the reaction:`, (t) => {
         try{
-            const state_s = Kefir.sequentially(0, [
-                // state 1
-                {
-                    FILTERS: {
-                        filter: "all"
-                    },
-
-                    TODOS: {
-                        last_id: 4,
-
-                        todos: {
-
-                            1: {
-                                id: 1,
-                                content: 'string 1',
-                                completed: false
-                            },
-
-                            2: {
-                                id: 2,
-                                content: 'string 2',
-                                completed: true
-                            },
-
-                            3: {
-                                id: 3,
-                                content: 'string 3',
-                                completed: false
-                            },
-
-                            4: {
-                                id: 4,
-                                content: 'string 4',
-                                completed: true
+            const mock_store = {
+                state_s: Kefir.sequentially(0, [
+                    // state 1
+                    {
+                        FILTERS: {
+                            filter: "all"
+                        },
+    
+                        TODOS: {
+                            last_id: 4,
+    
+                            todos: {
+    
+                                1: {
+                                    id: 1,
+                                    content: 'string 1',
+                                    completed: false
+                                },
+    
+                                2: {
+                                    id: 2,
+                                    content: 'string 2',
+                                    completed: true
+                                },
+    
+                                3: {
+                                    id: 3,
+                                    content: 'string 3',
+                                    completed: false
+                                },
+    
+                                4: {
+                                    id: 4,
+                                    content: 'string 4',
+                                    completed: true
+                                }
                             }
                         }
-                    }
-                }, // end of <value 1>
-
-                // state 2 - toggle todo #1
-                {
-                    FILTERS: {
-                        filter: "all"
-                    },
-
-                    TODOS: {
-                        last_id: 4,
-
-                        todos: {
-
-                            1: {
-                                id: 1,
-                                content: 'string 1',
-                                completed: true
-                            },
-
-                            2: {
-                                id: 2,
-                                content: 'string 2',
-                                completed: true
-                            },
-
-                            3: {
-                                id: 3,
-                                content: 'string 3',
-                                completed: false
-                            },
-
-                            4: {
-                                id: 4,
-                                content: 'string 4',
-                                completed: true
+                    }, // end of <value 1>
+    
+                    // state 2 - toggle todo #1
+                    {
+                        FILTERS: {
+                            filter: "all"
+                        },
+    
+                        TODOS: {
+                            last_id: 4,
+    
+                            todos: {
+    
+                                1: {
+                                    id: 1,
+                                    content: 'string 1',
+                                    completed: true
+                                },
+    
+                                2: {
+                                    id: 2,
+                                    content: 'string 2',
+                                    completed: true
+                                },
+    
+                                3: {
+                                    id: 3,
+                                    content: 'string 3',
+                                    completed: false
+                                },
+    
+                                4: {
+                                    id: 4,
+                                    content: 'string 4',
+                                    completed: true
+                                }
                             }
                         }
-                    }
-                }, // end of <value 2>
-
-                // state 3 - add new todo
-                {
-                    FILTERS: {
-                        filter: "all"
-                    },
-
-                    TODOS: {
-                        last_id: 5,
-
-                        todos: {
-
-                            1: {
-                                id: 1,
-                                content: 'string 1',
-                                completed: true
-                            },
-
-                            2: {
-                                id: 2,
-                                content: 'string 2',
-                                completed: true
-                            },
-
-                            3: {
-                                id: 3,
-                                content: 'string 3',
-                                completed: false
-                            },
-
-                            4: {
-                                id: 4,
-                                content: 'string 4',
-                                completed: true
-                            },
-
-                            5: {
-                                id: 5,
-                                content: 'string 5',
-                                completed: false
+                    }, // end of <value 2>
+    
+                    // state 3 - add new todo
+                    {
+                        FILTERS: {
+                            filter: "all"
+                        },
+    
+                        TODOS: {
+                            last_id: 5,
+    
+                            todos: {
+    
+                                1: {
+                                    id: 1,
+                                    content: 'string 1',
+                                    completed: true
+                                },
+    
+                                2: {
+                                    id: 2,
+                                    content: 'string 2',
+                                    completed: true
+                                },
+    
+                                3: {
+                                    id: 3,
+                                    content: 'string 3',
+                                    completed: false
+                                },
+    
+                                4: {
+                                    id: 4,
+                                    content: 'string 4',
+                                    completed: true
+                                },
+    
+                                5: {
+                                    id: 5,
+                                    content: 'string 5',
+                                    completed: false
+                                }
                             }
                         }
-                    }
-                }, // end of <value 3>
-
-                // state 4 - toggle todo #5
-                {
-                    FILTERS: {
-                        filter: "all"
-                    },
-
-                    TODOS: {
-                        last_id: 5,
-
-                        todos: {
-
-                            1: {
-                                id: 1,
-                                content: 'string 1',
-                                completed: true
-                            },
-
-                            2: {
-                                id: 2,
-                                content: 'string 2',
-                                completed: true
-                            },
-
-                            3: {
-                                id: 3,
-                                content: 'string 3',
-                                completed: false
-                            },
-
-                            4: {
-                                id: 4,
-                                content: 'string 4',
-                                completed: true
-                            },
-
-                            5: {
-                                id: 5,
-                                content: 'string 5',
-                                completed: true
+                    }, // end of <value 3>
+    
+                    // state 4 - toggle todo #5
+                    {
+                        FILTERS: {
+                            filter: "all"
+                        },
+    
+                        TODOS: {
+                            last_id: 5,
+    
+                            todos: {
+    
+                                1: {
+                                    id: 1,
+                                    content: 'string 1',
+                                    completed: true
+                                },
+    
+                                2: {
+                                    id: 2,
+                                    content: 'string 2',
+                                    completed: true
+                                },
+    
+                                3: {
+                                    id: 3,
+                                    content: 'string 3',
+                                    completed: false
+                                },
+    
+                                4: {
+                                    id: 4,
+                                    content: 'string 4',
+                                    completed: true
+                                },
+    
+                                5: {
+                                    id: 5,
+                                    content: 'string 5',
+                                    completed: true
+                                }
                             }
                         }
-                    }
-                }, // end of <value 4>
-
-                // state 5 - remove todo #3
-                {
-                    FILTERS: {
-                        filter: "all"
-                    },
-
-                    TODOS: {
-                        last_id: 5,
-
-                        todos: {
-
-                            1: {
-                                id: 1,
-                                content: 'string 1',
-                                completed: true
-                            },
-
-                            2: {
-                                id: 2,
-                                content: 'string 2',
-                                completed: true
-                            },
-
-                            4: {
-                                id: 4,
-                                content: 'string 4',
-                                completed: true
-                            },
-
-                            5: {
-                                id: 5,
-                                content: 'string 5',
-                                completed: true
+                    }, // end of <value 4>
+    
+                    // state 5 - remove todo #3
+                    {
+                        FILTERS: {
+                            filter: "all"
+                        },
+    
+                        TODOS: {
+                            last_id: 5,
+    
+                            todos: {
+    
+                                1: {
+                                    id: 1,
+                                    content: 'string 1',
+                                    completed: true
+                                },
+    
+                                2: {
+                                    id: 2,
+                                    content: 'string 2',
+                                    completed: true
+                                },
+    
+                                4: {
+                                    id: 4,
+                                    content: 'string 4',
+                                    completed: true
+                                },
+    
+                                5: {
+                                    id: 5,
+                                    content: 'string 5',
+                                    completed: true
+                                }
                             }
                         }
-                    }
-                } // end of <value 5>
-            ]);
+                    } // end of <value 5>
+                ])
+            };
 
             const expected_reactions = [notificationPostAction('Congrats! You did everything!')];
-            const actual_reaction_s = todosCompletedAllNotificationReaction({ todosIncompleteAllSelector, todosAllSelector })(null, { state_s });
+            const actual_reaction_s = todosCompletedAllNotificationReaction({ todosIncompleteAllSelector, todosAllSelector })(null, mock_store);
 
             let count_reactions = 0;
             actual_reaction_s.takeWhile(() => count_reactions <= expected_reactions.length)
