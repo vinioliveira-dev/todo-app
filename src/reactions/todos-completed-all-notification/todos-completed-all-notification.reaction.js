@@ -1,32 +1,24 @@
-// action listened to
-import TODOS_COMPLETED_TOGGLE from '../../actions/todos-completed-toggle/todos-completed-toggle.action.js';
-
 // action used as reaction
-import { notificationAction } from '../../actions/notification/notification.action.js';
+import { notificationPostAction } from '../../actions/notification-post/notification-post.action.js';
 
-function todosCompletedAllNotificationReaction({ todosIncompleteAllSelector }) {
-    return (action_s, store) => {
-        if (!store) {
-            throw new Error('ERROR - NO STORE');
-        }
+const todosCompletedAllNotificationReaction = ({ todosIncompleteAllSelector, todosAllSelector }) => (action_s, store) => {
 
-        const toggle_action_s = action_s.filter(({ type }) => type === TODOS_COMPLETED_TOGGLE);
+    if (!store) {
+        throw new Error('ERROR - NO STORE');
+    }
 
-        const reaction_s = toggle_action_s
-            .map(() => ({
-                incomplete_todos: todosIncompleteAllSelector(store.getState())
-            }))
-            .map(({ incomplete_todos }) => {
-                const all_done_message = 'all to-dos were done';
-                if (incomplete_todos === all_done_message) {
-                    return notificationAction(all_done_message);
-                }
-                return;
-            });
+    const state_s = store.state_s;
 
-        return reaction_s;
-    };
-}
+    const reaction_s = state_s
+        .map((state) => {
+            const all_todos = todosAllSelector(state);
+            const incomplete_todos = todosIncompleteAllSelector(state);
+            return (all_todos.length > 0 && incomplete_todos.length === 0) ? [notificationPostAction('Congrats! You did everything!')] : []
+        })
+        .flatten();
+
+    return reaction_s;
+};
 
 export {
     todosCompletedAllNotificationReaction

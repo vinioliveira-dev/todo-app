@@ -4,9 +4,10 @@ import { combineReactions, createReactionEnhancer } from '../libs/redux-s/redux-
 
 // custom dependencies for reactions
 import { todosIncompleteAllSelector } from './selectors/todos-incomplete-all/todos-incomplete-all.selector.js';
+import { todosAllSelector } from './selectors/todos-all/todos-all.selector.js';
 
-// reaction
-import { todosDeleteCompletedReaction } from './reactions/todos-delete-completed/todos-delete-completed.reaction.js';
+// reactions
+/* import { todosDeleteCompletedReaction } from './reactions/todos-delete-completed/todos-delete-completed.reaction.js'; */ //DISABLED TO AVOID INTERFERENCE ON OTHER REACTIONS
 import { todosCompletedAllNotificationReaction } from './reactions/todos-completed-all-notification/todos-completed-all-notification.reaction.js';
 
 // reducers
@@ -15,8 +16,8 @@ import FILTERS, { filtersReducer } from './reducers/filters/filters.reducer.js';
 
 function create() {
     const reactions = combineReactions(
-        todosDeleteCompletedReaction,
-        todosCompletedAllNotificationReaction({ todosIncompleteAllSelector })
+        //todosDeleteCompletedReaction,
+        todosCompletedAllNotificationReaction({ todosIncompleteAllSelector, todosAllSelector })
     );
     const reactions_enhancer = createReactionEnhancer();
 
