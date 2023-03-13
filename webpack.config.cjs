@@ -6,5 +6,8 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         filename: 'todo-store.js',
         library: 'todo_store'
+    },
+    optimization: {
+        minimize: false
     }
 };
