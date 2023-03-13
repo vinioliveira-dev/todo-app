@@ -4,9 +4,7 @@ import Kefir from 'kefir';
 
 import { todosAllSelector } from '../../selectors/todos-all/todos-all.selector.js';
 import { todosCompletedAllNotificationReaction } from './todos-completed-all-notification.reaction.js';
-import { todosCompletedToggleAction } from '../../actions/todos-completed-toggle/todos-completed-toggle.action.js';
 import { todosIncompleteAllSelector } from '../../selectors/todos-incomplete-all/todos-incomplete-all.selector.js';
-import { initial_state } from '../../reducers/todos/todos.reducer.js';
 import { notificationPostAction } from '../../actions/notification-post/notification-post.action.js';
 
 const TEST_NAME = 'todosCompletedAllNotificationReactionModule';
