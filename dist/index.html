@@ -9,8 +9,20 @@
 <body>
     <script src="./todo-store.js"></script>
     <script>
-        const _store = todo_store.create();
+        const _store = todo_store.create({
+            redux_devtool_extension_compose: getReduxDevtoolInstance()
+        });
         const store = {...todo_store, ..._store};
+        function getReduxDevtoolInstance() {
+            const redux_devtool_instance = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+                shouldRecordChanges: true, // auto pauses when the extension’s window is not opened to avoid performance problems
+                features: {
+                    pause: true, // Allow start/pause recording of dispatched actions, needed if shouldRecordChanges is false
+                    jump: false, // disallow time travelling
+                }
+            });
+            return redux_devtool_instance;
+        }
     </script>
 </body>
 </html>

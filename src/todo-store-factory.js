@@ -1,5 +1,5 @@
 // dependencies
-import { createStore, combineReducers } from 'redux';
+import { applyMiddleware, createStore, combineReducers, compose } from 'redux';
 import { combineReactions, createReactionEnhancer } from '../libs/redux-s/redux-s.js';
 
 // custom dependencies for reactions
@@ -14,29 +14,37 @@ import { todosCompletedAllNotificationReaction } from './reactions/todos-complet
 import TODOS, { todosReducer } from './reducers/todos/todos.reducer.js';
 import FILTERS, { filtersReducer } from './reducers/filters/filters.reducer.js';
 
-function create() {
+function create(configuration = {}) {
+    const { redux_devtool_extension_compose } = configuration;
+
     const reactions = combineReactions(
-        //todosDeleteCompletedReaction,
-        todosCompletedAllNotificationReaction({ todosIncompleteAllSelector, todosAllSelector })
+        todosCompletedAllNotificationReaction({
+            todosIncompleteAllSelector,
+            todosAllSelector
+        })
     );
-    const reactions_enhancer = createReactionEnhancer();
+    const reactions_enhancer = createReactionEnhancer();//reactions needs to be plugged later
 
     const reducers = combineReducers({
-        [TODOS]:    todosReducer,
-        [FILTERS]:  filtersReducer
+        [FILTERS]:              filtersReducer,
+        [TODOS]:                todosReducer
     });
 
-    const store = createStore(
-        reducers,
-        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    const composeEnhancers = redux_devtool_extension_compose || compose;
+    const enhancer = composeEnhancers(
+        reactions_enhancer.enhancer//order matters, reactions_enhancer should before any middleware, in a composer means the last one
     );
+
+    const store = createStore(reducers, enhancer);
     const plugReaction = reactions_enhancer.plugReaction(store);
     plugReaction(reactions);
 
     return {
         ...store,
-        plugReaction
+        plugReaction// plug reactions dynamically from UI components
     };
-};
+}
 
-export { create };
+export {
+    create
+};

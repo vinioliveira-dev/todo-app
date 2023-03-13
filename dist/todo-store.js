@@ -4772,30 +4772,36 @@ function filtersReducer(state = filters_reducer_INITIAL_STATE, action = {}) {
 
 
 
-function create() {
+function create(configuration = {}) {
+    const { redux_devtool_extension_compose } = configuration;
+
     const reactions = combineReactions(
-        //todosDeleteCompletedReaction,
-        todosCompletedAllNotificationReaction({ todosIncompleteAllSelector: todosIncompleteAllSelector, todosAllSelector: todosAllSelector })
+        todosCompletedAllNotificationReaction({
+            todosIncompleteAllSelector: todosIncompleteAllSelector,
+            todosAllSelector: todosAllSelector
+        })
     );
-    const reactions_enhancer = createReactionEnhancer();
+    const reactions_enhancer = createReactionEnhancer();//reactions needs to be plugged later
 
     const reducers = combineReducers({
-        [REDUCER_NAME]:    todosReducer,
-        [filters_reducer_REDUCER_NAME]:  filtersReducer
+        [filters_reducer_REDUCER_NAME]:              filtersReducer,
+        [REDUCER_NAME]:                todosReducer
     });
 
-    const store = createStore(
-        reducers,
-        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    const composeEnhancers = redux_devtool_extension_compose || compose;
+    const enhancer = composeEnhancers(
+        reactions_enhancer.enhancer//order matters, reactions_enhancer should before any middleware, in a composer means the last one
     );
+
+    const store = createStore(reducers, enhancer);
     const plugReaction = reactions_enhancer.plugReaction(store);
     plugReaction(reactions);
 
     return {
         ...store,
-        plugReaction
+        plugReaction// plug reactions dynamically from UI components
     };
-};
+}
 
 
 ;// CONCATENATED MODULE: ./src/selectors/todos-completed-all/todos-completed-all.selector.js
