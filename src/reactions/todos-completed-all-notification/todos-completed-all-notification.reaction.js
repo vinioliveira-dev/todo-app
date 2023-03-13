@@ -7,9 +7,9 @@ const todosCompletedAllNotificationReaction = ({ todosIncompleteAllSelector, tod
         throw new Error('ERROR - NO STORE');
     }
 
-    const { state_s } = store;
+    const state_change_s = store.state_s;
 
-    const reaction_s = state_s
+    const reaction_s = state_change_s
         .map((state) => {
             const all_todos = todosAllSelector(state);
             const incomplete_todos = todosIncompleteAllSelector(state);
