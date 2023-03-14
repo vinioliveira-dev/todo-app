@@ -10,15 +10,13 @@ const todosCompletedAllNotificationReaction = ({ todosIncompleteAllSelector, tod
     const state_change_s = store.state_s;
 
     const reaction_s = state_change_s
+        .skipDuplicates()
         .map(state => ({
             all_todos : todosAllSelector(state),
             incomplete_todos: todosIncompleteAllSelector(state)
         }))
         .filter(({ all_todos, incomplete_todos }) => all_todos.length && !incomplete_todos.length)
-        .skipDuplicates()
         .map(() => notificationPostAction('Congrats! You did everything!'));
-
-//return (all_todos.length > 0 && incomplete_todos.length <= 0) ? [notificationPostAction('Congrats! You did everything')] : [];
 
     return reaction_s;
 };

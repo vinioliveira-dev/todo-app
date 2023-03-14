@@ -26,7 +26,7 @@ function createReactionEnhancer() {
     var action_emitter;
     var action_s = Kefir.stream(function (emitter) {
         action_emitter = emitter;
-    });
+    }).log();
 
     const plugReaction = final_store => {// we need to dispatch the final composed version of dispatch
         const dynamic_reaction_s = Kefir.pool();

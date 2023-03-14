@@ -16,214 +16,111 @@ test(TEST_NAME, (t) => {
         t.end();
     });
 
-
-
-    t.test(`${TEST_NAME}: when the state changes, the reaction:`, (t) => {
+    t.test(`${TEST_NAME}: when the state changes, if "todos" slice is empty, the reaction:`, (t) => {
         try{
             const mock_store = {
-                state_s: Kefir.sequentially(0, [
-                    // state 1
+                state_s: Kefir.constant(
                     {
-                        FILTERS: {
-                            filter: "all"
-                        },
+                        FILTERS: { filter: "all" },
     
                         TODOS: {
-                            last_id: 4,
+                            last_id: 0,
+                            todos: { }
+                        }
+                    }
+                )
+            };
+
+            const expected_reactions = [];
+            const actual_reaction_s = todosCompletedAllNotificationReaction({ todosIncompleteAllSelector, todosAllSelector })(null, mock_store);
+
+            let count_reactions = 0;
+            actual_reaction_s.takeWhile(() => count_reactions <= expected_reactions.length)
+                .onValue((actual_reaction) => {
+                    t.deepEqual(actual_reaction, expected_reactions[count_reactions], 'should return the expected value');
+                    count_reactions += 1;
+                })
+                .onEnd(() => {
+                    t.equal(count_reactions, expected_reactions.length, `should trigger ${expected_reactions.length} reactions`)
+                    t.end();
+                });
+
+        } catch (error) {
+            t.fail(`An error happened during test excution of ${TEST_NAME}: ${error}`);
+            t.end();
+        }
+    });
+
+    t.test(`${TEST_NAME}: when the state changes, if there's any "todo" with "completed: false", the reaction:`, (t) => {
+        try{
+            const mock_store = {
+                state_s: Kefir.constant(
+                    {
+                        FILTERS: { filter: "all" },
     
+                        TODOS: {
+                            last_id: 2,
                             todos: {
-    
                                 1: {
                                     id: 1,
-                                    content: 'string 1',
+                                    content: 'todo #1',
                                     completed: false
                                 },
-    
                                 2: {
                                     id: 2,
-                                    content: 'string 2',
-                                    completed: true
-                                },
-    
-                                3: {
-                                    id: 3,
-                                    content: 'string 3',
-                                    completed: false
-                                },
-    
-                                4: {
-                                    id: 4,
-                                    content: 'string 4',
+                                    content: "todo #2",
                                     completed: true
                                 }
                             }
                         }
-                    }, // end of <value 1>
-    
-                    // state 2 - toggle todo #1
+                    }
+                )
+            };
+
+            const expected_reactions = [];
+            const actual_reaction_s = todosCompletedAllNotificationReaction({ todosIncompleteAllSelector, todosAllSelector })(null, mock_store);
+
+            let count_reactions = 0;
+            actual_reaction_s.takeWhile(() => count_reactions <= expected_reactions.length)
+                .onValue((actual_reaction) => {
+                    t.deepEqual(actual_reaction, expected_reactions[count_reactions], 'should return the expected value');
+                    count_reactions += 1;
+                })
+                .onEnd(() => {
+                    t.equal(count_reactions, expected_reactions.length, `should trigger ${expected_reactions.length} reactions`)
+                    t.end();
+                });
+
+        } catch (error) {
+            t.fail(`An error happened during test excution of ${TEST_NAME}: ${error}`);
+            t.end();
+        }
+    });
+
+    t.test(`${TEST_NAME}: when the state changes, if all "todos" have "completed: true", the reaction:`, (t) => {
+        try{
+            const mock_store = {
+                state_s: Kefir.constant(
                     {
-                        FILTERS: {
-                            filter: "all"
-                        },
+                        FILTERS: { filter: "all" },
     
                         TODOS: {
-                            last_id: 4,
-    
+                            last_id: 2,
                             todos: {
-    
                                 1: {
                                     id: 1,
-                                    content: 'string 1',
+                                    content: 'todo #1',
                                     completed: true
                                 },
-    
                                 2: {
                                     id: 2,
-                                    content: 'string 2',
-                                    completed: true
-                                },
-    
-                                3: {
-                                    id: 3,
-                                    content: 'string 3',
-                                    completed: false
-                                },
-    
-                                4: {
-                                    id: 4,
-                                    content: 'string 4',
+                                    content: "todo #2",
                                     completed: true
                                 }
                             }
                         }
-                    }, // end of <value 2>
-    
-                    // state 3 - add new todo
-                    {
-                        FILTERS: {
-                            filter: "all"
-                        },
-    
-                        TODOS: {
-                            last_id: 5,
-    
-                            todos: {
-    
-                                1: {
-                                    id: 1,
-                                    content: 'string 1',
-                                    completed: true
-                                },
-    
-                                2: {
-                                    id: 2,
-                                    content: 'string 2',
-                                    completed: true
-                                },
-    
-                                3: {
-                                    id: 3,
-                                    content: 'string 3',
-                                    completed: false
-                                },
-    
-                                4: {
-                                    id: 4,
-                                    content: 'string 4',
-                                    completed: true
-                                },
-    
-                                5: {
-                                    id: 5,
-                                    content: 'string 5',
-                                    completed: false
-                                }
-                            }
-                        }
-                    }, // end of <value 3>
-    
-                    // state 4 - toggle todo #5
-                    {
-                        FILTERS: {
-                            filter: "all"
-                        },
-    
-                        TODOS: {
-                            last_id: 5,
-    
-                            todos: {
-    
-                                1: {
-                                    id: 1,
-                                    content: 'string 1',
-                                    completed: true
-                                },
-    
-                                2: {
-                                    id: 2,
-                                    content: 'string 2',
-                                    completed: true
-                                },
-    
-                                3: {
-                                    id: 3,
-                                    content: 'string 3',
-                                    completed: false
-                                },
-    
-                                4: {
-                                    id: 4,
-                                    content: 'string 4',
-                                    completed: true
-                                },
-    
-                                5: {
-                                    id: 5,
-                                    content: 'string 5',
-                                    completed: true
-                                }
-                            }
-                        }
-                    }, // end of <value 4>
-    
-                    // state 5 - remove todo #3
-                    {
-                        FILTERS: {
-                            filter: "all"
-                        },
-    
-                        TODOS: {
-                            last_id: 5,
-    
-                            todos: {
-    
-                                1: {
-                                    id: 1,
-                                    content: 'string 1',
-                                    completed: true
-                                },
-    
-                                2: {
-                                    id: 2,
-                                    content: 'string 2',
-                                    completed: true
-                                },
-    
-                                4: {
-                                    id: 4,
-                                    content: 'string 4',
-                                    completed: true
-                                },
-    
-                                5: {
-                                    id: 5,
-                                    content: 'string 5',
-                                    completed: true
-                                }
-                            }
-                        }
-                    } // end of <value 5>
-                ])
+                    }
+                )
             };
 
             const expected_reactions = [notificationPostAction('Congrats! You did everything!')];
@@ -245,5 +142,4 @@ test(TEST_NAME, (t) => {
             t.end();
         }
     });
-
 });

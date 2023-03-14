@@ -4484,7 +4484,7 @@ function createReactionEnhancer() {
     var action_emitter;
     var action_s = kefir_esm/* default.stream */.ZP.stream(function (emitter) {
         action_emitter = emitter;
-    });
+    }).log();
 
     const plugReaction = final_store => {// we need to dispatch the final composed version of dispatch
         const dynamic_reaction_s = kefir_esm/* default.pool */.ZP.pool();
@@ -4609,12 +4609,14 @@ const todosCompletedAllNotificationReaction = ({ todosIncompleteAllSelector, tod
     const state_change_s = store.state_s;
 
     const reaction_s = state_change_s
+        // This first map method is building this new object everytime the state changes
+        .skipDuplicates()
         .map(state => ({
             all_todos : todosAllSelector(state),
             incomplete_todos: todosIncompleteAllSelector(state)
         }))
         .filter(({ all_todos, incomplete_todos }) => all_todos.length && !incomplete_todos.length)
-        .skipDuplicates()
+        //.skipDuplicates()
         .map(() => notificationPostAction('Congrats! You did everything!'));
 
 //return (all_todos.length > 0 && incomplete_todos.length <= 0) ? [notificationPostAction('Congrats! You did everything')] : [];
